@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import time
 import re
@@ -52,10 +53,10 @@ if __name__ == "__main__":
             correct_time = True
 
         if correct_day and correct_time:
-            print 'Reminding!'
+            print('Reminding!')
             remind()
         else:
-            print 'Not reminding!'
+            print ('Not reminding!')
 
     else:
         print("Connection failed. Exception traceback printed above.")
