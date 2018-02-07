@@ -1,7 +1,9 @@
 import os
 import time
 import re
+import datetime
 from slackclient import SlackClient
+from pytz import timezone
 
 # Tutorials
 # https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
@@ -32,12 +34,28 @@ if __name__ == "__main__":
         print("Starter Bot connected and running!")
         # Read bot's user ID by calling Web API method `auth.test`
         starterbot_id = slack_client.api_call("auth.test")["user_id"]
-        while True:
-            #command, channel = parse_bot_commands(slack_client.rtm_read())
-            #if command:
-            #    handle_command(command, channel)
-            print starterbot_id
+
+        # remind when?
+        # It is Tuesday, Wednesday, Thursday, or Friday
+        amsterdam = timezone('Europe/Amsterdam')
+        correct_day = False
+        now = datetime.datetime.now()
+        weekday = amsterdam.localize(now).strftime('%w')
+        if weekday in (2, 3, 4, 5):
+            correct_day = True
+
+        # It is about three o'clock
+        correct_time = False
+        hour = int(amsterdam.localize(now).strftime('%H'))
+        minutes = int(amsterdam.localize(now).strftime('%M'))
+        if (hour == 14 and minutes >= 55) or (hour == 15 and minutes <= 5):
+            correct_time = True
+
+        if correct_day and correct_time:
+            print 'Reminding!'
             remind()
-            time.sleep(RTM_READ_DELAY)
+        else:
+            print 'Not reminding!'
+
     else:
         print("Connection failed. Exception traceback printed above.")
