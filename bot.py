@@ -41,7 +41,7 @@ if __name__ == "__main__":
         amsterdam = timezone('Europe/Amsterdam')
         correct_day = False
         now = datetime.datetime.now()
-        weekday = amsterdam.localize(now).strftime('%w')
+        weekday = int(amsterdam.localize(now).strftime('%w'))
         if weekday in (2, 3, 4, 5):
             correct_day = True
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
         if correct_day and correct_time:
             print('Reminding!')
-            remind()
+            #remind()
         else:
             print ('Not reminding!')
 
