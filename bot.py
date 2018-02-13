@@ -41,9 +41,14 @@ if __name__ == "__main__":
         amsterdam = timezone('Europe/Amsterdam')
         correct_day = False
         now = datetime.datetime.now()
+        print('The system time is {}'.format(now.strftime('%H:%M:%S')))
+        print('The time in Amsterdam is {}'.format(amsterdam.localize(now).strftime('%H:%M:%S')))
         weekday = int(amsterdam.localize(now).strftime('%w'))
         if weekday in (2, 3, 4, 5):
             correct_day = True
+
+        if correct_day:
+            print('The day is correct for reminding')
 
         # It is about three o'clock
         correct_time = False
@@ -51,6 +56,9 @@ if __name__ == "__main__":
         minutes = int(amsterdam.localize(now).strftime('%M'))
         if (hour == 14 and minutes >= 55) or (hour == 15 and minutes <= 5):
             correct_time = True
+
+        if correct_time:
+            print('The time is correct for reminding')
 
         if correct_day and correct_time:
             print('Reminding!')
