@@ -5,6 +5,7 @@ import re
 import datetime
 from slackclient import SlackClient
 from pytz import timezone
+import pytz
 
 # Tutorials
 # https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
@@ -36,14 +37,18 @@ if __name__ == "__main__":
         # Read bot's user ID by calling Web API method `auth.test`
         starterbot_id = slack_client.api_call("auth.test")["user_id"]
 
+        # timezone conversion solution from https://stackoverflow.com/questions/4563272/convert-a-python-utc-datetime-to-a-local-datetime-using-only-python-standard-lib
+        amsterdam = timezone('Europe/Amsterdam')
+        now = datetime.datetime.utcnow()
+        amsterdam_now = now.replace(tzinfo=pytz.utc).astimezone(amsterdam)
+
+        print('The utc time is {}'.format(now.strftime('%H:%M:%S')))
+        print('The time in Amsterdam is {}'.format(amsterdam_now.strftime('%H:%M:%S')))
+
         # remind when?
         # It is Tuesday, Wednesday, Thursday, or Friday
-        amsterdam = timezone('Europe/Amsterdam')
         correct_day = False
-        now = datetime.datetime.now()
-        print('The system time is {}'.format(now.strftime('%H:%M:%S')))
-        print('The time in Amsterdam is {}'.format(amsterdam.localize(now).strftime('%H:%M:%S')))
-        weekday = int(amsterdam.localize(now).strftime('%w'))
+        weekday = int(amsterdam_now.strftime('%w'))
         if weekday in (2, 3, 4, 5):
             correct_day = True
 
@@ -52,8 +57,8 @@ if __name__ == "__main__":
 
         # It is about three o'clock
         correct_time = False
-        hour = int(amsterdam.localize(now).strftime('%H'))
-        minutes = int(amsterdam.localize(now).strftime('%M'))
+        hour = int(amsterdam_now.strftime('%H'))
+        minutes = int(amsterdam_now.strftime('%M'))
         if (hour == 14 and minutes >= 55) or (hour == 15 and minutes <= 5):
             correct_time = True
 
