@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
         if correct_day and correct_time:
             print('Reminding!')
-            #remind()
+            remind()
         else:
             print ('Not reminding!')
 
