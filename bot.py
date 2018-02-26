@@ -21,7 +21,7 @@ def remind():
     # Sends the response back to the channel
     slack_client.api_call(
         "chat.postMessage",
-        channel='test-coffee-break-bot',
+        channel='general',
         text='@channel It is time for coffee break!',
         link_names=True
     )
