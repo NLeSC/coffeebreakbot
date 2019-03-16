@@ -22,7 +22,7 @@ def remind():
     slack_client.api_call(
         "chat.postMessage",
         channel='general',
-        text='@channel It is time for coffee break!',
+        text='@here It is time for a coffee break!',
         link_names=True
     )
 
