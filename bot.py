@@ -49,7 +49,7 @@ if __name__ == "__main__":
         # It is Tuesday, Wednesday, Thursday, or Friday
         correct_day = False
         weekday = int(amsterdam_now.strftime('%w'))
-        if weekday in (2, 3, 4, 5):
+        if weekday in (1, 2, 3, 4, 5):
             correct_day = True
 
         if correct_day:
