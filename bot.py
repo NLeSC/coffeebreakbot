@@ -59,7 +59,7 @@ if __name__ == "__main__":
         correct_time = False
         hour = int(amsterdam_now.strftime('%H'))
         minutes = int(amsterdam_now.strftime('%M'))
-        if (hour == 14 and minutes >= 55) or (hour == 15 and minutes <= 5):
+        if (hour == 14 and minutes >= 25) or (hour == 14 and minutes <= 35):
             correct_time = True
 
         if correct_time:
