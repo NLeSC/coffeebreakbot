@@ -23,11 +23,13 @@ def remind():
         "chat.postMessage",
         channel='general',
         text='@here It is time for a coffee break!',
-        link_names=True
+        link_names=True,
+        as_user=True
     )
 
+
 # constants
-RTM_READ_DELAY = 20 # 1 second delay between reading from RTM
+RTM_READ_DELAY = 20  # 1 second delay between reading from RTM
 EXAMPLE_COMMAND = "do"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
