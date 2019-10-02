@@ -1,7 +1,7 @@
 # Coffee Break Bot
 
 A very simple slack bot that reminds you to have a coffee break (at 14:30 Mondays until Fridays).
-
+Editing
 ## Using on Heroku
 
 * [Add config var](https://devcenter.heroku.com/articles/config-vars) for the SLACK_BOT_TOKEN (`export SLACK_BOT_TOKEN=xxxxxxxxx`)
